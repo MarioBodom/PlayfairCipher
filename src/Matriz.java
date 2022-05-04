@@ -1,7 +1,3 @@
-import java.util.Arrays;
-
-import javax.swing.text.html.FormView;
-
 public class Matriz {
     
     String tablero[][];
