@@ -1,3 +1,5 @@
+import java.util.Arrays;
+
 public class Matriz {
     
     String tablero[][];
@@ -5,7 +7,7 @@ public class Matriz {
     public Matriz(String clave){
         this.tablero = new String[5][5];
         
-        rellenarMatriz(clave);
+        rellenarMatriz(limpiarClave(clave));
 
 
     }
@@ -21,9 +23,20 @@ public class Matriz {
     }
 
     private String limpiarClave(String clave){
-        String claveLimpia = " ";
-
-        return claveLimpia;
+        char strChar[] = clave.toCharArray();
+        int index = 0;
+        for (int i = 0; i < strChar.length; i++) {
+            int j;
+            for (j = 0; j < i; j++) {
+                if (strChar[i] == strChar[j]) {
+                    break;
+                }
+            }
+            if (i == j) {
+                strChar[index++] = strChar[i];
+            }
+        }
+        return String.valueOf(Arrays.copyOf(strChar, index));
     }
 
     @Override
