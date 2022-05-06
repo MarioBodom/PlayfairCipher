@@ -1,6 +1,6 @@
 public class App {
     public static void main(String[] args) throws Exception {
-        Matriz m1 = new Matriz("marihuana");
+        Matriz m1 = new Matriz("nube");
 
         m1.toString();
     }

@@ -2,10 +2,10 @@ import java.util.Arrays;
 
 public class Matriz {
     
-    String tablero[][];
+    char tablero[][];
 
     public Matriz(String clave){
-        this.tablero = new String[5][5];
+        this.tablero = new char[5][5];
         
         rellenarMatriz(limpiarClave(clave));
 
@@ -16,7 +16,7 @@ public class Matriz {
 
         for (int i = 0; i < tablero.length; i++) {
             for (int j = 0; j < tablero.length; j++) {
-                this.tablero[i][j] = Character.toString(claveLimpia.charAt(j+i));
+                this.tablero[i][j] = claveLimpia.charAt(j);
                 
             }
         }
