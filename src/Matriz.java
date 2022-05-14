@@ -5,10 +5,10 @@ import java.util.Arrays;
 
 public class Matriz {
     
-    char tablero[][];
+    String tablero[][];
 
     public Matriz(String clave){
-        this.tablero = new char[5][5];
+        this.tablero = new String[5][5];
         
         rellenarMatriz(limpiarClave(clave.toUpperCase()));
 
@@ -18,19 +18,19 @@ public class Matriz {
     private void rellenarMatriz(String claveLimpia){
         int contador = 0;
         char caracter = 'A';
-        String keyString = "ABCDEFGHIKLMNOPQRSTUVWXYZ";
+        String keyString = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
         for (int i = 0; i < tablero.length; i++) {
             for (int j = 0; j < tablero.length; j++) {
                 if (contador < claveLimpia.length()) {
-                    this.tablero[i][j] = claveLimpia.charAt(contador);
+                    this.tablero[i][j] = claveLimpia.substring(contador, contador+1);
                     contador++;
                 }else{
                     for (int j2 = 0; j2 < keyString.length(); j2++) {
                         for (int k = 0; k < claveLimpia.length(); k++) {
-                            if (claveLimpia.charAt(k) == keyString.charAt(j2)) {
-                                continue;
+                            if (!keyString.substring(j2, j2+1).equals(claveLimpia.substring(k, k+1))) {
+                                this.tablero[i][j] = keyString.substring(j2);
                             }else{
-                                tablero[i][j] = keyString.charAt(j2);
+                                continue;
                             }
                         }
                     }
