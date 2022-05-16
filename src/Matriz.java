@@ -15,25 +15,59 @@ public class Matriz {
 
     }
 
+    private boolean estaLetra(String clave, char letra) {
+        boolean existe = false;
+        int longitud = clave.length();
+        // int contador = 0;
+        for (int i = 0; i < longitud; i++) {
+            if (clave.charAt(i) == letra) {
+                existe = true;
+                return existe;
+            }
+        }
+        return existe;
+    }
+
     private void rellenarMatriz(String claveLimpia){
         int contador = 0;
         char caracter = 'A';
-        String keyString = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+        // String keyString = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
         for (int i = 0; i < tablero.length; i++) {
             for (int j = 0; j < tablero.length; j++) {
                 if (contador < claveLimpia.length()) {
                     this.tablero[i][j] = claveLimpia.substring(contador, contador+1);
                     contador++;
                 }else{
-                    for (int j2 = 0; j2 < keyString.length(); j2++) {
-                        for (int k = 0; k < claveLimpia.length(); k++) {
-                            if (!keyString.substring(j2, j2+1).equals(claveLimpia.substring(k, k+1))) {
-                                this.tablero[i][j] = keyString.substring(j2);
-                            }else{
-                                continue;
-                            }
-                        }
+                    // if(!estaLetra(claveLimpia, caracter) && caracter != 'J'){
+                    //     tablero[i][j] = String.valueOf(caracter);
+                    //     caracter++;
+                    // }else{
+                    //     caracter++;
+                    //     j--;
+                    // }
+
+                    while (estaLetra(claveLimpia, caracter)) {
+                        caracter++;
                     }
+                    
+                        tablero[i][j] = String.valueOf(caracter);
+                        caracter++;
+                    
+                    // for (int j2 = 0; j2 < claveLimpia.length(); j2++) {
+                    //     // for (int k = 0; k < claveLimpia.length(); k++) {
+                    //     //     if (!keyString.substring(j2, j2+1).equals(claveLimpia.substring(k, k+1))) {
+                    //     //         this.tablero[i][j] = keyString.substring(j2);
+                    //     //     }else{
+                    //     //         continue;
+                    //     //     }
+                    //     // }
+                    //     if (!claveLimpia.substring(j2, j2).equals(String.valueOf(caracter)) && caracter<='Z') {
+                    //         this.tablero[i][j] = String.valueOf(caracter);
+                    //         caracter++;
+                    //     }else{
+                    //         caracter++;
+                    //     }
+                    // }
                 }
                 
                 
