@@ -74,4 +74,41 @@ public class Matriz {
         return null;
         
     }
+
+    private char letraJota(char l){
+        char letra = l;
+        if (letra == 'Ñ') {
+            letra = 'N';
+        } else {
+            if (letra == 'J') {
+            letra = 'I';
+            }
+        }
+        return letra;
+    }
+
+    private int[] posicion(char letra){
+        String l = String.valueOf(letra);
+        int[] posicion = new int[2];
+        for (int i = 0; i < tablero.length; i++) {
+            for (int j = 0; j < tablero.length; j++) {
+                if (tablero[i][j] == l) {
+                    posicion[0] = i;
+                    posicion[1] = j;
+                }
+            }
+        }
+
+        return posicion;
+    }
+
+    public char[] letras (char l1, char l2){
+        char[] letras = new char[2];
+        int[] posL1;
+        int[] posL2;
+        posL1 = posicion(l1);
+        posL2 = posicion(l2);
+
+        return letras;
+    }
 }
