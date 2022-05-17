@@ -8,7 +8,7 @@ public class Matriz {
     public Matriz(String clave){
         this.tablero = new String[5][5];
         
-        rellenarMatriz(limpiarClave(clave.toUpperCase()));
+        rellenarMatriz(limpiarClave(clave.replaceAll(" ", "").toUpperCase()));
 
 
     }
@@ -31,10 +31,14 @@ public class Matriz {
         for (int i = 0; i < tablero.length; i++) {
             for (int j = 0; j < tablero.length; j++) {
                 if (contador < claveLimpia.length()) {
+                    if (claveLimpia.charAt(contador) == 'J') {
+                    this.tablero[i][j] = "I";
+                    contador++;
+                    }
                     this.tablero[i][j] = claveLimpia.substring(contador, contador+1);
                     contador++;
                 }else{
-                    while (estaLetra(claveLimpia, caracter) || caracter == 'J') {
+                    while (estaLetra(claveLimpia, caracter ) || caracter == 'J' ) {
                         caracter++;
                     }
                     tablero[i][j] = String.valueOf(caracter);
