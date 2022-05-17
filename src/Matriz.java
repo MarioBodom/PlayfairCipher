@@ -1,4 +1,5 @@
 import java.util.Arrays;
+import java.util.Scanner;
 
 
 public class Matriz {
@@ -122,5 +123,13 @@ public class Matriz {
             }
         }
         return letras;
+    }
+
+    public String cifrarMensaje(){
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Dame el mensaje que quieras cifrar");
+        String mensaje = sc.nextLine();
+        String mensajeCifrado = "";
+        return mensajeCifrado;
     }
 }
