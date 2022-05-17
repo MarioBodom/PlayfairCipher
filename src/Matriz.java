@@ -88,7 +88,7 @@ public class Matriz {
     }
 
     private int[] posicion(char letra){
-        String l = String.valueOf(letra);
+        String l = String.valueOf(letraJota(letra));
         int[] posicion = new int[2];
         for (int i = 0; i < tablero.length; i++) {
             for (int j = 0; j < tablero.length; j++) {
@@ -102,13 +102,21 @@ public class Matriz {
         return posicion;
     }
 
-    public char[] letras (char l1, char l2){
-        char[] letras = new char[2];
+    public String[] letras (char l1, char l2){
+        String[] letras = new String[2];
         int[] posL1;
         int[] posL2;
         posL1 = posicion(l1);
         posL2 = posicion(l2);
+        // caso 1
+        if (posL1[0] == posL2[0]) {
+            if (posL1[1] !=4) {
+                letras[0] = tablero[posL1[0]][posL1[1]+1];
 
+            }else{
+                letras[1] = tablero[posL1[0]][0];
+            }
+        }
         return letras;
     }
 }
