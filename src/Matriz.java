@@ -1,5 +1,3 @@
-import java.lang.invoke.CallSite;
-import java.util.ArrayList;
 import java.util.Arrays;
 
 
@@ -18,7 +16,6 @@ public class Matriz {
     private boolean estaLetra(String clave, char letra) {
         boolean existe = false;
         int longitud = clave.length();
-        // int contador = 0;
         for (int i = 0; i < longitud; i++) {
             if (clave.charAt(i) == letra) {
                 existe = true;
@@ -31,7 +28,6 @@ public class Matriz {
     private void rellenarMatriz(String claveLimpia){
         int contador = 0;
         char caracter = 'A';
-        // String keyString = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
         for (int i = 0; i < tablero.length; i++) {
             for (int j = 0; j < tablero.length; j++) {
                 if (contador < claveLimpia.length()) {
