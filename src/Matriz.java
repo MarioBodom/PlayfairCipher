@@ -38,39 +38,12 @@ public class Matriz {
                     this.tablero[i][j] = claveLimpia.substring(contador, contador+1);
                     contador++;
                 }else{
-                    // if(!estaLetra(claveLimpia, caracter) && caracter != 'J'){
-                    //     tablero[i][j] = String.valueOf(caracter);
-                    //     caracter++;
-                    // }else{
-                    //     caracter++;
-                    //     j--;
-                    // }
-
-                    while (estaLetra(claveLimpia, caracter)) {
+                    while (estaLetra(claveLimpia, caracter) || caracter == 'J') {
                         caracter++;
                     }
-                    
-                        tablero[i][j] = String.valueOf(caracter);
-                        caracter++;
-                    
-                    // for (int j2 = 0; j2 < claveLimpia.length(); j2++) {
-                    //     // for (int k = 0; k < claveLimpia.length(); k++) {
-                    //     //     if (!keyString.substring(j2, j2+1).equals(claveLimpia.substring(k, k+1))) {
-                    //     //         this.tablero[i][j] = keyString.substring(j2);
-                    //     //     }else{
-                    //     //         continue;
-                    //     //     }
-                    //     // }
-                    //     if (!claveLimpia.substring(j2, j2).equals(String.valueOf(caracter)) && caracter<='Z') {
-                    //         this.tablero[i][j] = String.valueOf(caracter);
-                    //         caracter++;
-                    //     }else{
-                    //         caracter++;
-                    //     }
-                    // }
+                    tablero[i][j] = String.valueOf(caracter);
+                    caracter++;
                 }
-                
-                
             }
         }
     }
