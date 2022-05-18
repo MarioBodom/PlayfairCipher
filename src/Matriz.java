@@ -82,7 +82,7 @@ public class Matriz {
 
     private char letraJota(char l){
         char letra = l;
-        if (letra == 'Ñ') {
+        if (letra == 'Ñ' || letra == '¤') {
             letra = 'N';
         } else {
             if (letra == 'J') {
@@ -103,7 +103,6 @@ public class Matriz {
                 }
             }
         }
-
         return posicion;
     }
 
@@ -122,14 +121,30 @@ public class Matriz {
                 letras[1] = tablero[posL1[0]][0];
             }
         }
+        // caso 2
+
         return letras;
     }
 
     public String cifrarMensaje(){
         Scanner sc = new Scanner(System.in);
         System.out.println("Dame el mensaje que quieras cifrar");
-        String mensaje = sc.nextLine();
+        String mensaje = limpiarMensaje(sc.nextLine());
         String mensajeCifrado = "";
+        for (int i = 0; i < mensaje.length()+1; i++) {
+            mensajeCifrado += String.valueOf(letras(mensaje.charAt(i), mensaje.charAt(i+1)));
+        }
         return mensajeCifrado;
+    }
+
+    private String limpiarMensaje(String mensaje) {
+        String mensajeLimpio = "";
+        mensaje = mensaje.replaceAll(" ", "");
+        if (mensaje.length()%2 == 0) {
+            mensajeLimpio = mensaje;
+        } else {
+            mensajeLimpio = mensaje + "X";
+        }
+        return mensajeLimpio;
     }
 }
