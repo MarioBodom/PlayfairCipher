@@ -122,6 +122,9 @@ public class Matriz {
             }
         }
         // caso 2
+        if (posL1[1] == posL2[1]) {
+            
+        }
 
         return letras;
     }
@@ -131,8 +134,9 @@ public class Matriz {
         System.out.println("Dame el mensaje que quieras cifrar");
         String mensaje = limpiarMensaje(sc.nextLine());
         String mensajeCifrado = "";
-        for (int i = 0; i < mensaje.length()+1; i++) {
-            mensajeCifrado += String.valueOf(letras(mensaje.charAt(i), mensaje.charAt(i+1)));
+        for (int i = 0; i < mensaje.length()-1; i++) {
+            String letras = letras(mensaje.charAt(i), mensaje.charAt(i+1)).toString();
+            mensajeCifrado += letras;
         }
         return mensajeCifrado;
     }
