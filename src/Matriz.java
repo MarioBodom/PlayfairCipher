@@ -106,7 +106,7 @@ public class Matriz {
         return posicion;
     }
 
-    public String[] letras (char l1, char l2){
+    public String[] letrasCifrar (char l1, char l2){
         String[] letras = new String[2];
         int[] posL1;
         int[] posL2;
@@ -134,9 +134,11 @@ public class Matriz {
         System.out.println("Dame el mensaje que quieras cifrar");
         String mensaje = limpiarMensaje(sc.nextLine());
         String mensajeCifrado = "";
-        for (int i = 0; i < mensaje.length()-1; i++) {
-            String letras = letras(mensaje.charAt(i), mensaje.charAt(i+1)).toString();
-            mensajeCifrado += letras;
+        for (int i = 0; i < mensaje.length()-1; i+=2) {
+            String[] letras = letrasCifrar(mensaje.charAt(i), mensaje.charAt(i+1));
+            for (int j = 0; j < letras.length; j++) {
+                mensajeCifrado += letras[j];
+            }
         }
         return mensajeCifrado;
     }
