@@ -129,7 +129,7 @@ public class Matriz {
         return letras;
     }
 
-    public String cifrarMensaje(){
+    public void cifrarMensaje(){
         Scanner sc = new Scanner(System.in);
         System.out.println("Dame el mensaje que quieras cifrar");
         String mensaje = limpiarMensaje(sc.nextLine());
@@ -140,7 +140,7 @@ public class Matriz {
                 mensajeCifrado += letras[j];
             }
         }
-        return mensajeCifrado;
+        System.out.println(mensajeCifrado);
     }
 
     private String limpiarMensaje(String mensaje) {

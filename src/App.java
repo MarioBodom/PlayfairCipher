@@ -8,8 +8,7 @@ public class App {
         Matriz m1 = new Matriz(clave);
 
         m1.toString();
-        String mensajeCifrado = m1.cifrarMensaje();
-        System.out.println(mensajeCifrado);
+        m1.cifrarMensaje();
         
 
     }
