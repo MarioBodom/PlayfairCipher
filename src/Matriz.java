@@ -123,7 +123,13 @@ public class Matriz {
         }
         // caso 2
         if (posL1[1] == posL2[1]) {
-            
+            if (posL1[0]!=4) {
+                letras[1] = tablero[posL1[1]][posL1[1]+1]; 
+            } else {
+                letras[0] = tablero[posL1[1]][1];
+            }
+        }else{
+            letras[0] = tablero[posL1[1]][1];
         }
 
         return letras;
