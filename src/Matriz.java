@@ -1,5 +1,6 @@
 import java.util.Arrays;
 import java.util.Scanner;
+import java.util.Vector;
 
 
 public class Matriz {
@@ -100,6 +101,20 @@ public class Matriz {
                 if (tablero[i][j] == l) {
                     posicion[0] = i;
                     posicion[1] = j;
+                }
+            }
+        }
+        return posicion;
+    }
+
+    private Vector posicionVector(char letra){
+        String l = String.valueOf(letraJota(letra));
+        Vector posicion = new Vector<>(2);
+        for (int i = 0; i < tablero.length; i++) {
+            for (int j = 0; j < tablero.length; j++) {
+                if (tablero[i][j] == l) {
+                    posicion.addElement(i);
+                    posicion.addElement(j);
                 }
             }
         }
