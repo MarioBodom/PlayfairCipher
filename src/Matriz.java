@@ -109,7 +109,7 @@ public class Matriz {
 
     private Vector posicionVector(char letra){
         String l = String.valueOf(letraJota(letra));
-        Vector posicion = new Vector<>(2);
+        Vector posicion = new Vector<Integer>(2);
         for (int i = 0; i < tablero.length; i++) {
             for (int j = 0; j < tablero.length; j++) {
                 if (tablero[i][j] == l) {
