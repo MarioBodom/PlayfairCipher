@@ -141,10 +141,10 @@ public class Matriz {
             if (posL1[0]!=4) {
                 letras[1] = tablero[posL1[1]][posL1[1]+1]; 
             } else {
-                letras[0] = tablero[posL1[1]][1];
+                letras[0] = tablero[posL1[0]][1];
             }
         }else{
-            letras[0] = tablero[posL1[1]][1];
+            letras[0] = tablero[posL1[1]][0];
         }
 
         return letras;
