@@ -1,8 +1,6 @@
 import java.util.Arrays;
 import java.util.Scanner;
-import java.util.Vector;
-
-import javax.sound.midi.VoiceStatus;
+import java.io.*;;;;
 
 
 public class Matriz {
@@ -109,20 +107,6 @@ public class Matriz {
         return posicion;
     }
 
-    // private Vector posicionVector(char letra){
-    //     String l = String.valueOf(letraJota(letra));
-    //     Vector posicion = new Vector<Integer>(2);
-    //     for (int i = 0; i < tablero.length; i++) {
-    //         for (int j = 0; j < tablero.length; j++) {
-    //             if (tablero[i][j] == l) {
-    //                 posicion.addElement(i);
-    //                 posicion.addElement(j);
-    //             }
-    //         }
-    //     }
-    //     return posicion;
-    // }
-
     public String[] letrasCifrar (char l1, char l2){
         String[] letras = new String[2];
         int[] posL1;
@@ -142,9 +126,6 @@ public class Matriz {
                 letras[1] = tablero[posL2[0]][posL1[1]];
             }
         }
-        // caso 2
-        
-
         return letras;
     }
 
@@ -172,7 +153,7 @@ public class Matriz {
     public void cifrarMensaje(){
         Scanner sc = new Scanner(System.in);
         System.out.println("Dame el mensaje que quieras cifrar");
-        String mensaje = limpiarMensaje(sc.nextLine());
+        String mensaje = limpiarMensaje(sc.nextLine().toUpperCase());
         String mensajeCifrado = "";
         for (int i = 0; i < mensaje.length()-1; i+=2) {
             String[] letras = letrasCifrar(mensaje.charAt(i), mensaje.charAt(i+1));
@@ -186,7 +167,7 @@ public class Matriz {
     public void descifrar() {
         Scanner sc = new Scanner(System.in);
         System.out.println("Dame el mensaje que quieras descifrar");
-        String mensaje = limpiarMensaje(sc.nextLine());
+        String mensaje = limpiarMensaje(sc.nextLine().toUpperCase());
         String mensajeDescifrado = "";
         for (int i = 0; i < mensaje.length()-1; i+=2) {
             String[] letras = letrasDescifrar(mensaje.charAt(i), mensaje.charAt(i+1));
