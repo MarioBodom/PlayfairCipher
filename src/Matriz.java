@@ -6,13 +6,12 @@ import java.io.*;;;;
 public class Matriz {
     
     String tablero[][];
+    String clave;
 
     public Matriz(String clave){
-        this.tablero = new String[5][5];
-        
+        this.tablero = new String[5][5];        
         rellenarMatriz(limpiarClave(clave.replaceAll(" ", "").toUpperCase()));
-
-
+        this.clave = clave;
     }
 
     private boolean estaLetra(String clave, char letra) {
@@ -151,6 +150,8 @@ public class Matriz {
     }
 
     public void cifrarMensaje(){
+        Escritor writer = new Escritor();
+        String accion = "Cifrar";
         Scanner sc = new Scanner(System.in);
         System.out.println("Dame el mensaje que quieras cifrar");
         String mensaje = limpiarMensaje(sc.nextLine().toUpperCase());
@@ -161,11 +162,15 @@ public class Matriz {
                 mensajeCifrado += letras[j];
             }
         }
+        writer.escribir(mensaje, mensajeCifrado, accion, this.clave);
+
         System.out.println(mensajeCifrado);
     }
 
     public void descifrar() {
         Scanner sc = new Scanner(System.in);
+        Escritor writer = new Escritor();
+        String accion = "Descifrar";        
         System.out.println("Dame el mensaje que quieras descifrar");
         String mensaje = limpiarMensaje(sc.nextLine().toUpperCase());
         String mensajeDescifrado = "";
@@ -175,6 +180,7 @@ public class Matriz {
                 mensajeDescifrado += letras[j];
             }
         }
+        writer.escribir(mensaje, mensajeDescifrado, accion, this.clave);
         System.out.println(mensajeDescifrado);
     }
 
@@ -187,5 +193,19 @@ public class Matriz {
             mensajeLimpio = mensaje + "X";
         }
         return mensajeLimpio;
+    }
+}
+
+class Escritor{
+
+    public void escribir(String mensaje, String mensajeCifrado, String accion, String clave) {
+        try {
+            FileWriter f = new FileWriter("src/resultados.txt", true);
+            f.append(accion+" "+clave+" "+mensaje+" "+mensajeCifrado+"\n");
+            f.close();
+        } catch (IOException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
     }
 }
