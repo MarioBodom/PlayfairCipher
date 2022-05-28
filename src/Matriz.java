@@ -94,11 +94,11 @@ public class Matriz {
     }
 
     private int[] posicion(char letra){
-        String l = String.valueOf(letraJota(letra));
+        String l = String.valueOf(letra);
         int[] posicion = new int[2];
         for (int i = 0; i < tablero.length; i++) {
             for (int j = 0; j < tablero.length; j++) {
-                if (tablero[i][j] == l) {
+                if (tablero[i][j].equals(l)) {
                     posicion[0] = i;
                     posicion[1] = j;
                 }
@@ -107,19 +107,19 @@ public class Matriz {
         return posicion;
     }
 
-    private Vector posicionVector(char letra){
-        String l = String.valueOf(letraJota(letra));
-        Vector posicion = new Vector<Integer>(2);
-        for (int i = 0; i < tablero.length; i++) {
-            for (int j = 0; j < tablero.length; j++) {
-                if (tablero[i][j] == l) {
-                    posicion.addElement(i);
-                    posicion.addElement(j);
-                }
-            }
-        }
-        return posicion;
-    }
+    // private Vector posicionVector(char letra){
+    //     String l = String.valueOf(letraJota(letra));
+    //     Vector posicion = new Vector<Integer>(2);
+    //     for (int i = 0; i < tablero.length; i++) {
+    //         for (int j = 0; j < tablero.length; j++) {
+    //             if (tablero[i][j] == l) {
+    //                 posicion.addElement(i);
+    //                 posicion.addElement(j);
+    //             }
+    //         }
+    //     }
+    //     return posicion;
+    // }
 
     public String[] letrasCifrar (char l1, char l2){
         String[] letras = new String[2];
@@ -128,25 +128,42 @@ public class Matriz {
         posL1 = posicion(l1);
         posL2 = posicion(l2);
         // caso 1
-        if (posL1[0] == posL2[0]) {
-            if (posL1[1] !=4) {
-                letras[0] = tablero[posL1[0]][posL1[1]+1];
-
+        if (posL1[1] == posL2[1]) {
+            letras[0] = tablero[(posL1[0]+1)%5][posL1[1]];
+            letras[1] = tablero[(posL2[0]+1)%5][posL2[1]];
+        }else{
+            if (posL1[0] == posL2[0]) {
+                letras[0] = tablero[posL1[0]][(posL1[1]+1)%5];
+                letras[1] = tablero[posL2[0]][(posL2[1]+1)%5];
             }else{
-                letras[1] = tablero[posL1[0]][0];
+                letras[0] = tablero[posL1[0]][posL2[1]];
+                letras[1] = tablero[posL2[0]][posL1[1]];
             }
         }
         // caso 2
-        if (posL1[1] == posL2[1]) {
-            if (posL1[0]!=4) {
-                letras[1] = tablero[posL1[1]][posL1[1]+1]; 
-            } else {
-                letras[0] = tablero[posL1[0]][1];
-            }
-        }else{
-            letras[0] = tablero[posL1[1]][0];
-        }
+        
 
+        return letras;
+    }
+
+    public String[] letrasDescifrar (char l1, char l2){
+        String[] letras = new String[2];
+        int[] posL1;
+        int[] posL2;
+        posL1 = posicion(l1);
+        posL2 = posicion(l2);
+        if (posL1[1] == posL2[1]) {
+            letras[0] = tablero[(posL1[0]+1)%5][posL1[1]];
+            letras[1] = tablero[(posL2[0]+1)%5][posL2[1]];
+        }else{
+            if (posL1[0] == posL2[0]) {
+                letras[0] = tablero[posL1[0]][(posL1[1]+1)%5];
+                letras[1] = tablero[posL2[0]][(posL2[1]+1)%5];
+            }else{
+                letras[0] = tablero[posL1[0]][posL2[1]];
+                letras[1] = tablero[posL2[0]][posL1[1]];
+            }
+        }
         return letras;
     }
 
