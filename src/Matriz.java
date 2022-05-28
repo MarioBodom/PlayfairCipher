@@ -2,6 +2,8 @@ import java.util.Arrays;
 import java.util.Scanner;
 import java.util.Vector;
 
+import javax.sound.midi.VoiceStatus;
+
 
 public class Matriz {
     
@@ -94,7 +96,7 @@ public class Matriz {
     }
 
     private int[] posicion(char letra){
-        String l = String.valueOf(letra);
+        String l = String.valueOf(letraJota(letra));
         int[] posicion = new int[2];
         for (int i = 0; i < tablero.length; i++) {
             for (int j = 0; j < tablero.length; j++) {
@@ -153,12 +155,12 @@ public class Matriz {
         posL1 = posicion(l1);
         posL2 = posicion(l2);
         if (posL1[1] == posL2[1]) {
-            letras[0] = tablero[(posL1[0]+1)%5][posL1[1]];
-            letras[1] = tablero[(posL2[0]+1)%5][posL2[1]];
+            letras[0] = tablero[(posL1[0]+4)%5][posL1[1]];
+            letras[1] = tablero[(posL2[0]+4)%5][posL2[1]];
         }else{
             if (posL1[0] == posL2[0]) {
-                letras[0] = tablero[posL1[0]][(posL1[1]+1)%5];
-                letras[1] = tablero[posL2[0]][(posL2[1]+1)%5];
+                letras[0] = tablero[posL1[0]][(posL1[1]+4)%5];
+                letras[1] = tablero[posL2[0]][(posL2[1]+4)%5];
             }else{
                 letras[0] = tablero[posL1[0]][posL2[1]];
                 letras[1] = tablero[posL2[0]][posL1[1]];
@@ -179,6 +181,20 @@ public class Matriz {
             }
         }
         System.out.println(mensajeCifrado);
+    }
+
+    public void descifrar() {
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Dame el mensaje que quieras descifrar");
+        String mensaje = limpiarMensaje(sc.nextLine());
+        String mensajeDescifrado = "";
+        for (int i = 0; i < mensaje.length()-1; i+=2) {
+            String[] letras = letrasDescifrar(mensaje.charAt(i), mensaje.charAt(i+1));
+            for (int j = 0; j < letras.length; j++) {
+                mensajeDescifrado += letras[j];
+            }
+        }
+        System.out.println(mensajeDescifrado);
     }
 
     private String limpiarMensaje(String mensaje) {

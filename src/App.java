@@ -9,6 +9,7 @@ public class App {
 
         m1.toString();
         m1.cifrarMensaje();
+        m1.descifrar();
         
 
     }
