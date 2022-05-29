@@ -1,12 +1,18 @@
 import java.util.Arrays;
 import java.util.Scanner;
-import java.io.*;;;;
+import java.io.*;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 
 public class Matriz {
     
     String tablero[][];
     String clave;
+    String mensaje;
+    LocalDate fecha = LocalDate.now();
+    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+    String fechaFichero = fecha.format(formatter);
 
     public Matriz(String clave){
         this.tablero = new String[5][5];        
@@ -154,15 +160,16 @@ public class Matriz {
         String accion = "Cifrar";
         Scanner sc = new Scanner(System.in);
         System.out.println("Dame el mensaje que quieras cifrar");
-        String mensaje = limpiarMensaje(sc.nextLine().toUpperCase());
+        this.mensaje = sc.nextLine();
+        String mensajeLimpio = limpiarMensaje(this.mensaje.toUpperCase());
         String mensajeCifrado = "";
-        for (int i = 0; i < mensaje.length()-1; i+=2) {
-            String[] letras = letrasCifrar(mensaje.charAt(i), mensaje.charAt(i+1));
+        for (int i = 0; i < mensajeLimpio.length()-1; i+=2) {
+            String[] letras = letrasCifrar(mensajeLimpio.charAt(i), mensajeLimpio.charAt(i+1));
             for (int j = 0; j < letras.length; j++) {
                 mensajeCifrado += letras[j];
             }
         }
-        writer.escribir(mensaje, mensajeCifrado, accion, this.clave);
+        writer.escribir(this.mensaje, mensajeCifrado, accion, this.clave, this.fechaFichero);
 
         System.out.println(mensajeCifrado);
     }
@@ -180,7 +187,7 @@ public class Matriz {
                 mensajeDescifrado += letras[j];
             }
         }
-        writer.escribir(mensaje, mensajeDescifrado, accion, this.clave);
+        writer.escribir(mensaje, mensajeDescifrado, accion, this.clave, this.fechaFichero);
         System.out.println(mensajeDescifrado);
     }
 
@@ -198,10 +205,10 @@ public class Matriz {
 
 class Escritor{
 
-    public void escribir(String mensaje, String mensajeCifrado, String accion, String clave) {
+    public void escribir(String mensaje, String mensajeCifrado, String accion, String clave, String fecha) {
         try {
             FileWriter f = new FileWriter("src/resultados.txt", true);
-            f.append(accion+" "+clave+" "+mensaje+" "+mensajeCifrado+"\n");
+            f.append(accion+" - "+clave+" - "+mensaje+" - "+mensajeCifrado+" - "+fecha+"\n");
             f.close();
         } catch (IOException e) {
             // TODO Auto-generated catch block
